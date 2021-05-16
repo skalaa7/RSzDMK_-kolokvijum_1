@@ -1,0 +1,352 @@
+In archive libtimer0.a:
+
+timer0.o:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000000  00000000  00000000  00000034  2**0
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00000000  00000000  00000034  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000000  00000000  00000000  00000034  2**0
+                  ALLOC
+  3 .text.timer0InteruptInit 00000014  00000000  00000000  00000034  2**0
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  4 .text.__vector_14 000000de  00000000  00000000  00000048  2**0
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+  5 .text.timer0Delay 000001c2  00000000  00000000  00000126  2**0
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+  6 .text.timer0PassMs 00000022  00000000  00000000  000002e8  2**0
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+  7 .bss.ms       00000008  00000000  00000000  0000030a  2**0
+                  ALLOC
+
+Disassembly of section .text.timer0InteruptInit:
+
+00000000 <timer0InteruptInit>:
+   0:	82 e0       	ldi	r24, 0x02	; 2
+   2:	84 bd       	out	0x24, r24	; 36
+   4:	93 e0       	ldi	r25, 0x03	; 3
+   6:	95 bd       	out	0x25, r25	; 37
+   8:	99 ef       	ldi	r25, 0xF9	; 249
+   a:	97 bd       	out	0x27, r25	; 39
+   c:	80 93 6e 00 	sts	0x006E, r24
+  10:	78 94       	sei
+  12:	08 95       	ret
+
+Disassembly of section .text.__vector_14:
+
+00000000 <__vector_14>:
+   0:	1f 92       	push	r1
+   2:	0f 92       	push	r0
+   4:	0f b6       	in	r0, 0x3f	; 63
+   6:	0f 92       	push	r0
+   8:	11 24       	eor	r1, r1
+   a:	1f 93       	push	r17
+   c:	2f 93       	push	r18
+   e:	3f 93       	push	r19
+  10:	4f 93       	push	r20
+  12:	5f 93       	push	r21
+  14:	6f 93       	push	r22
+  16:	7f 93       	push	r23
+  18:	8f 93       	push	r24
+  1a:	9f 93       	push	r25
+  1c:	af 93       	push	r26
+  1e:	bf 93       	push	r27
+  20:	ef 93       	push	r30
+  22:	ff 93       	push	r31
+  24:	80 91 00 00 	lds	r24, 0x0000
+  28:	20 91 00 00 	lds	r18, 0x0000
+  2c:	30 91 00 00 	lds	r19, 0x0000
+  30:	40 91 00 00 	lds	r20, 0x0000
+  34:	60 91 00 00 	lds	r22, 0x0000
+  38:	e0 91 00 00 	lds	r30, 0x0000
+  3c:	a0 91 00 00 	lds	r26, 0x0000
+  40:	10 91 00 00 	lds	r17, 0x0000
+  44:	b8 2f       	mov	r27, r24
+  46:	bf 5f       	subi	r27, 0xFF	; 255
+  48:	91 e0       	ldi	r25, 0x01	; 1
+  4a:	b8 17       	cp	r27, r24
+  4c:	00 f0       	brcs	.+0      	; 0x4e <__vector_14+0x4e>
+  4e:	90 e0       	ldi	r25, 0x00	; 0
+  50:	f9 2f       	mov	r31, r25
+  52:	f2 0f       	add	r31, r18
+  54:	81 e0       	ldi	r24, 0x01	; 1
+  56:	f2 17       	cp	r31, r18
+  58:	00 f0       	brcs	.+0      	; 0x5a <__vector_14+0x5a>
+  5a:	80 e0       	ldi	r24, 0x00	; 0
+  5c:	78 2f       	mov	r23, r24
+  5e:	73 0f       	add	r23, r19
+  60:	81 e0       	ldi	r24, 0x01	; 1
+  62:	73 17       	cp	r23, r19
+  64:	00 f0       	brcs	.+0      	; 0x66 <__vector_14+0x66>
+  66:	80 e0       	ldi	r24, 0x00	; 0
+  68:	58 2f       	mov	r21, r24
+  6a:	54 0f       	add	r21, r20
+  6c:	81 e0       	ldi	r24, 0x01	; 1
+  6e:	54 17       	cp	r21, r20
+  70:	00 f0       	brcs	.+0      	; 0x72 <__vector_14+0x72>
+  72:	80 e0       	ldi	r24, 0x00	; 0
+  74:	38 2f       	mov	r19, r24
+  76:	36 0f       	add	r19, r22
+  78:	81 e0       	ldi	r24, 0x01	; 1
+  7a:	36 17       	cp	r19, r22
+  7c:	00 f0       	brcs	.+0      	; 0x7e <__vector_14+0x7e>
+  7e:	80 e0       	ldi	r24, 0x00	; 0
+  80:	28 2f       	mov	r18, r24
+  82:	2e 0f       	add	r18, r30
+  84:	81 e0       	ldi	r24, 0x01	; 1
+  86:	2e 17       	cp	r18, r30
+  88:	00 f0       	brcs	.+0      	; 0x8a <__vector_14+0x8a>
+  8a:	80 e0       	ldi	r24, 0x00	; 0
+  8c:	98 2f       	mov	r25, r24
+  8e:	9a 0f       	add	r25, r26
+  90:	81 e0       	ldi	r24, 0x01	; 1
+  92:	9a 17       	cp	r25, r26
+  94:	00 f0       	brcs	.+0      	; 0x96 <__vector_14+0x96>
+  96:	80 e0       	ldi	r24, 0x00	; 0
+  98:	81 0f       	add	r24, r17
+  9a:	b0 93 00 00 	sts	0x0000, r27
+  9e:	f0 93 00 00 	sts	0x0000, r31
+  a2:	70 93 00 00 	sts	0x0000, r23
+  a6:	50 93 00 00 	sts	0x0000, r21
+  aa:	30 93 00 00 	sts	0x0000, r19
+  ae:	20 93 00 00 	sts	0x0000, r18
+  b2:	90 93 00 00 	sts	0x0000, r25
+  b6:	80 93 00 00 	sts	0x0000, r24
+  ba:	ff 91       	pop	r31
+  bc:	ef 91       	pop	r30
+  be:	bf 91       	pop	r27
+  c0:	af 91       	pop	r26
+  c2:	9f 91       	pop	r25
+  c4:	8f 91       	pop	r24
+  c6:	7f 91       	pop	r23
+  c8:	6f 91       	pop	r22
+  ca:	5f 91       	pop	r21
+  cc:	4f 91       	pop	r20
+  ce:	3f 91       	pop	r19
+  d0:	2f 91       	pop	r18
+  d2:	1f 91       	pop	r17
+  d4:	0f 90       	pop	r0
+  d6:	0f be       	out	0x3f, r0	; 63
+  d8:	0f 90       	pop	r0
+  da:	1f 90       	pop	r1
+  dc:	18 95       	reti
+
+Disassembly of section .text.timer0Delay:
+
+00000000 <timer0Delay>:
+   0:	2f 92       	push	r2
+   2:	3f 92       	push	r3
+   4:	4f 92       	push	r4
+   6:	5f 92       	push	r5
+   8:	6f 92       	push	r6
+   a:	7f 92       	push	r7
+   c:	8f 92       	push	r8
+   e:	9f 92       	push	r9
+  10:	af 92       	push	r10
+  12:	bf 92       	push	r11
+  14:	cf 92       	push	r12
+  16:	df 92       	push	r13
+  18:	ef 92       	push	r14
+  1a:	ff 92       	push	r15
+  1c:	0f 93       	push	r16
+  1e:	1f 93       	push	r17
+  20:	df 93       	push	r29
+  22:	cf 93       	push	r28
+  24:	00 d0       	rcall	.+0      	; 0x26 <timer0Delay+0x26>
+  26:	cd b7       	in	r28, 0x3d	; 61
+  28:	de b7       	in	r29, 0x3e	; 62
+  2a:	20 91 00 00 	lds	r18, 0x0000
+  2e:	29 83       	std	Y+1, r18	; 0x01
+  30:	e0 91 00 00 	lds	r30, 0x0000
+  34:	ea 83       	std	Y+2, r30	; 0x02
+  36:	20 90 00 00 	lds	r2, 0x0000
+  3a:	30 90 00 00 	lds	r3, 0x0000
+  3e:	40 90 00 00 	lds	r4, 0x0000
+  42:	50 90 00 00 	lds	r5, 0x0000
+  46:	60 90 00 00 	lds	r6, 0x0000
+  4a:	70 90 00 00 	lds	r7, 0x0000
+  4e:	8b 01       	movw	r16, r22
+  50:	9c 01       	movw	r18, r24
+  52:	40 e0       	ldi	r20, 0x00	; 0
+  54:	50 e0       	ldi	r21, 0x00	; 0
+  56:	60 e0       	ldi	r22, 0x00	; 0
+  58:	70 e0       	ldi	r23, 0x00	; 0
+  5a:	80 91 00 00 	lds	r24, 0x0000
+  5e:	f0 90 00 00 	lds	r15, 0x0000
+  62:	a0 91 00 00 	lds	r26, 0x0000
+  66:	b0 91 00 00 	lds	r27, 0x0000
+  6a:	c0 90 00 00 	lds	r12, 0x0000
+  6e:	b0 90 00 00 	lds	r11, 0x0000
+  72:	a0 90 00 00 	lds	r10, 0x0000
+  76:	80 90 00 00 	lds	r8, 0x0000
+  7a:	98 2e       	mov	r9, r24
+  7c:	f9 81       	ldd	r31, Y+1	; 0x01
+  7e:	9f 1a       	sub	r9, r31
+  80:	91 e0       	ldi	r25, 0x01	; 1
+  82:	89 15       	cp	r24, r9
+  84:	00 f0       	brcs	.+0      	; 0x86 <timer0Delay+0x86>
+  86:	90 e0       	ldi	r25, 0x00	; 0
+  88:	8f 2d       	mov	r24, r15
+  8a:	ea 81       	ldd	r30, Y+2	; 0x02
+  8c:	8e 1b       	sub	r24, r30
+  8e:	e1 e0       	ldi	r30, 0x01	; 1
+  90:	f8 16       	cp	r15, r24
+  92:	00 f0       	brcs	.+0      	; 0x94 <timer0Delay+0x94>
+  94:	e0 e0       	ldi	r30, 0x00	; 0
+  96:	d8 2e       	mov	r13, r24
+  98:	d9 1a       	sub	r13, r25
+  9a:	91 e0       	ldi	r25, 0x01	; 1
+  9c:	8d 15       	cp	r24, r13
+  9e:	00 f0       	brcs	.+0      	; 0xa0 <timer0Delay+0xa0>
+  a0:	90 e0       	ldi	r25, 0x00	; 0
+  a2:	e9 2b       	or	r30, r25
+  a4:	8a 2f       	mov	r24, r26
+  a6:	82 19       	sub	r24, r2
+  a8:	f1 e0       	ldi	r31, 0x01	; 1
+  aa:	a8 17       	cp	r26, r24
+  ac:	00 f0       	brcs	.+0      	; 0xae <timer0Delay+0xae>
+  ae:	f0 e0       	ldi	r31, 0x00	; 0
+  b0:	e8 2e       	mov	r14, r24
+  b2:	ee 1a       	sub	r14, r30
+  b4:	91 e0       	ldi	r25, 0x01	; 1
+  b6:	8e 15       	cp	r24, r14
+  b8:	00 f0       	brcs	.+0      	; 0xba <timer0Delay+0xba>
+  ba:	90 e0       	ldi	r25, 0x00	; 0
+  bc:	f9 2b       	or	r31, r25
+  be:	8b 2f       	mov	r24, r27
+  c0:	83 19       	sub	r24, r3
+  c2:	e1 e0       	ldi	r30, 0x01	; 1
+  c4:	b8 17       	cp	r27, r24
+  c6:	00 f0       	brcs	.+0      	; 0xc8 <timer0Delay+0xc8>
+  c8:	e0 e0       	ldi	r30, 0x00	; 0
+  ca:	f8 2e       	mov	r15, r24
+  cc:	ff 1a       	sub	r15, r31
+  ce:	91 e0       	ldi	r25, 0x01	; 1
+  d0:	8f 15       	cp	r24, r15
+  d2:	00 f0       	brcs	.+0      	; 0xd4 <timer0Delay+0xd4>
+  d4:	90 e0       	ldi	r25, 0x00	; 0
+  d6:	e9 2b       	or	r30, r25
+  d8:	8c 2d       	mov	r24, r12
+  da:	84 19       	sub	r24, r4
+  dc:	f1 e0       	ldi	r31, 0x01	; 1
+  de:	c8 16       	cp	r12, r24
+  e0:	00 f0       	brcs	.+0      	; 0xe2 <timer0Delay+0xe2>
+  e2:	f0 e0       	ldi	r31, 0x00	; 0
+  e4:	b8 2f       	mov	r27, r24
+  e6:	be 1b       	sub	r27, r30
+  e8:	91 e0       	ldi	r25, 0x01	; 1
+  ea:	8b 17       	cp	r24, r27
+  ec:	00 f0       	brcs	.+0      	; 0xee <timer0Delay+0xee>
+  ee:	90 e0       	ldi	r25, 0x00	; 0
+  f0:	f9 2b       	or	r31, r25
+  f2:	8b 2d       	mov	r24, r11
+  f4:	85 19       	sub	r24, r5
+  f6:	e1 e0       	ldi	r30, 0x01	; 1
+  f8:	b8 16       	cp	r11, r24
+  fa:	00 f0       	brcs	.+0      	; 0xfc <timer0Delay+0xfc>
+  fc:	e0 e0       	ldi	r30, 0x00	; 0
+  fe:	a8 2f       	mov	r26, r24
+ 100:	af 1b       	sub	r26, r31
+ 102:	91 e0       	ldi	r25, 0x01	; 1
+ 104:	8a 17       	cp	r24, r26
+ 106:	00 f0       	brcs	.+0      	; 0x108 <timer0Delay+0x108>
+ 108:	90 e0       	ldi	r25, 0x00	; 0
+ 10a:	e9 2b       	or	r30, r25
+ 10c:	8a 2d       	mov	r24, r10
+ 10e:	86 19       	sub	r24, r6
+ 110:	91 e0       	ldi	r25, 0x01	; 1
+ 112:	a8 16       	cp	r10, r24
+ 114:	00 f0       	brcs	.+0      	; 0x116 <timer0Delay+0x116>
+ 116:	90 e0       	ldi	r25, 0x00	; 0
+ 118:	f8 2f       	mov	r31, r24
+ 11a:	fe 1b       	sub	r31, r30
+ 11c:	e1 e0       	ldi	r30, 0x01	; 1
+ 11e:	8f 17       	cp	r24, r31
+ 120:	00 f0       	brcs	.+0      	; 0x122 <timer0Delay+0x122>
+ 122:	e0 e0       	ldi	r30, 0x00	; 0
+ 124:	9e 2b       	or	r25, r30
+ 126:	88 2d       	mov	r24, r8
+ 128:	87 19       	sub	r24, r7
+ 12a:	89 1b       	sub	r24, r25
+ 12c:	87 17       	cp	r24, r23
+ 12e:	00 f4       	brcc	.+0      	; 0x130 <timer0Delay+0x130>
+ 130:	00 c0       	rjmp	.+0      	; 0x132 <timer0Delay+0x132>
+ 132:	78 17       	cp	r23, r24
+ 134:	01 f4       	brne	.+0      	; 0x136 <timer0Delay+0x136>
+ 136:	f6 17       	cp	r31, r22
+ 138:	00 f4       	brcc	.+0      	; 0x13a <timer0Delay+0x13a>
+ 13a:	00 c0       	rjmp	.+0      	; 0x13c <timer0Delay+0x13c>
+ 13c:	6f 17       	cp	r22, r31
+ 13e:	01 f4       	brne	.+0      	; 0x140 <timer0Delay+0x140>
+ 140:	a5 17       	cp	r26, r21
+ 142:	00 f4       	brcc	.+0      	; 0x144 <timer0Delay+0x144>
+ 144:	00 c0       	rjmp	.+0      	; 0x146 <timer0Delay+0x146>
+ 146:	5a 17       	cp	r21, r26
+ 148:	01 f4       	brne	.+0      	; 0x14a <timer0Delay+0x14a>
+ 14a:	b4 17       	cp	r27, r20
+ 14c:	00 f4       	brcc	.+0      	; 0x14e <timer0Delay+0x14e>
+ 14e:	00 c0       	rjmp	.+0      	; 0x150 <timer0Delay+0x150>
+ 150:	4b 17       	cp	r20, r27
+ 152:	01 f4       	brne	.+0      	; 0x154 <timer0Delay+0x154>
+ 154:	f3 16       	cp	r15, r19
+ 156:	00 f4       	brcc	.+0      	; 0x158 <timer0Delay+0x158>
+ 158:	00 c0       	rjmp	.+0      	; 0x15a <timer0Delay+0x15a>
+ 15a:	3f 15       	cp	r19, r15
+ 15c:	01 f4       	brne	.+0      	; 0x15e <timer0Delay+0x15e>
+ 15e:	e2 16       	cp	r14, r18
+ 160:	00 f4       	brcc	.+0      	; 0x162 <timer0Delay+0x162>
+ 162:	00 c0       	rjmp	.+0      	; 0x164 <timer0Delay+0x164>
+ 164:	2e 15       	cp	r18, r14
+ 166:	01 f4       	brne	.+0      	; 0x168 <timer0Delay+0x168>
+ 168:	d1 16       	cp	r13, r17
+ 16a:	00 f4       	brcc	.+0      	; 0x16c <timer0Delay+0x16c>
+ 16c:	00 c0       	rjmp	.+0      	; 0x16e <timer0Delay+0x16e>
+ 16e:	1d 15       	cp	r17, r13
+ 170:	01 f4       	brne	.+0      	; 0x172 <timer0Delay+0x172>
+ 172:	90 16       	cp	r9, r16
+ 174:	00 f4       	brcc	.+0      	; 0x176 <timer0Delay+0x176>
+ 176:	00 c0       	rjmp	.+0      	; 0x178 <timer0Delay+0x178>
+ 178:	20 91 00 00 	lds	r18, 0x0000
+ 17c:	30 91 00 00 	lds	r19, 0x0000
+ 180:	40 91 00 00 	lds	r20, 0x0000
+ 184:	50 91 00 00 	lds	r21, 0x0000
+ 188:	60 91 00 00 	lds	r22, 0x0000
+ 18c:	70 91 00 00 	lds	r23, 0x0000
+ 190:	80 91 00 00 	lds	r24, 0x0000
+ 194:	90 91 00 00 	lds	r25, 0x0000
+ 198:	0f 90       	pop	r0
+ 19a:	0f 90       	pop	r0
+ 19c:	cf 91       	pop	r28
+ 19e:	df 91       	pop	r29
+ 1a0:	1f 91       	pop	r17
+ 1a2:	0f 91       	pop	r16
+ 1a4:	ff 90       	pop	r15
+ 1a6:	ef 90       	pop	r14
+ 1a8:	df 90       	pop	r13
+ 1aa:	cf 90       	pop	r12
+ 1ac:	bf 90       	pop	r11
+ 1ae:	af 90       	pop	r10
+ 1b0:	9f 90       	pop	r9
+ 1b2:	8f 90       	pop	r8
+ 1b4:	7f 90       	pop	r7
+ 1b6:	6f 90       	pop	r6
+ 1b8:	5f 90       	pop	r5
+ 1ba:	4f 90       	pop	r4
+ 1bc:	3f 90       	pop	r3
+ 1be:	2f 90       	pop	r2
+ 1c0:	08 95       	ret
+
+Disassembly of section .text.timer0PassMs:
+
+00000000 <timer0PassMs>:
+   0:	20 91 00 00 	lds	r18, 0x0000
+   4:	30 91 00 00 	lds	r19, 0x0000
+   8:	40 91 00 00 	lds	r20, 0x0000
+   c:	50 91 00 00 	lds	r21, 0x0000
+  10:	60 91 00 00 	lds	r22, 0x0000
+  14:	70 91 00 00 	lds	r23, 0x0000
+  18:	80 91 00 00 	lds	r24, 0x0000
+  1c:	90 91 00 00 	lds	r25, 0x0000
+  20:	08 95       	ret
